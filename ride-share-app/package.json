@@ -1,0 +1,19 @@
+{
+  "name": "ride-share-app",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "start:backend": "ts-node packages/backend/src/index.ts",
+    "start:web": "vite --config packages/web/vite.config.ts",
+    "start:mobile": "expo start --config packages/mobile/app.json",
+    "test:backend": "jest --config packages/backend/jest.config.js",
+    "test:web": "jest --config packages/web/jest.config.js",
+    "test:mobile": "jest --config packages/mobile/jest.config.js",
+    "test:e2e:web": "cypress run",
+    "test:e2e:mobile": "detox test",
+    "build:backend": "tsc -p packages/backend",
+    "build:web": "vite build --config packages/web/vite.config.ts",
+    "build:mobile": "expo build",
+    "build": "npm run build:backend && npm run build:web && npm run build:mobile"
+  }
+}
