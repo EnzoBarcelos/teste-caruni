@@ -12,10 +12,19 @@ model User {
   email    String  @unique
   password String
   role     String
+  ridesAsPassenger Ride[] @relation("PassengerRides")
+  ridesAsDriver    Ride[] @relation("DriverRides")
 }
 model Ride {
-  id        Int  @id @default(autoincrement())
-  passenger Int
-  driver    Int?
-  status    String
+  id          Int    @id @default(autoincrement())
+  passenger   User   @relation("PassengerRides", fields: [passengerId], references: [id])
+  passengerId Int
+  driver      User?  @relation("DriverRides", fields: [driverId], references: [id])
+  driverId    Int?
+  status      String
+  originLat   Float
+  originLng   Float
+  destLat     Float
+  destLng     Float
+  createdAt   DateTime @default(now())
 }
